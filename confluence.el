@@ -905,9 +905,14 @@ SPACE-NAME."
     (cf-rpc-execute 'confluence1.search query
                     params (or max-results confluence-search-max-results))))
 
-(defun cf-rpc-save-page (page-struct)
-  "Executes a confluence 'storePage' rpc call with a page struct."
-  (cf-rpc-execute 'confluence1.storePage page-struct))
+(defun cf-rpc-save-page (page-struct &optional comment minorEdit)
+  "Executes a confluence 'storePage' rpc call with a page struct (or
+'updatePage' if comment or minorEdit flag are specified)."
+  (if (or (cf-string-notempty comment) minorEdit)
+      (let ((page-options (list (cons "versionComment" coment) 
+                                (cons "minorEdit" minorEdit))))
+        (cf-rpc-execute 'confluence1.updatePage page-struct page-options))
+    (cf-rpc-execute 'confluence1.storePage page-struct)))
 
 (defun cf-rpc-get-spaces ()
   "Executes a confluence 'getSpaces' rpc call."
