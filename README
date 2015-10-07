@@ -11,7 +11,7 @@ back into your confluence instance.
 
 This mode can be downloaded from:
 
-  http://code.google.com/p/confluence-el/
+  https://sourceforge.net/projects/confluence-el/
 
 
 
@@ -62,3 +62,7 @@ Changes
         storage (and subsequent reversion).
 
 
+Please note that the GitHub repository is a mirror of the main project
+repository which is hosted on SourceForge:
+
+Homepage: https://sourceforge.net/projects/confluence-el/
