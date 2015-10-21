@@ -432,6 +432,13 @@ automatically converted to wiki format when loaded."
 (defvar confluence-input-url nil)
 (defvar confluence-no-push nil)
 
+;; newer versions of emacs don't seem to have this defined (24.4+)
+(unless (boundp 'thing-at-point-url-regexp)
+  (defvar thing-at-point-url-regexp
+    (concat "\\<\\(" (mapconcat 'identity thing-at-point-uri-schemes "\\|") "\\)"
+            thing-at-point-url-path-regexp)
+    "A regular expression probably matching a complete URL."))
+
 (defun confluence-login (&optional arg)
   "Logs into the current confluence url, if necessary.  With ARG, forces
 re-login to the current url."
